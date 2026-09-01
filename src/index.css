@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* Tailwind v4 默认 dark 变体是 prefers-color-scheme，但本项目用 .dark class 切换暗色，需显式声明 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bg-primary: #F5F5F7;
+  --color-bg-dark: #1C1C1E;
+  --color-bg-card: rgba(255, 255, 255, 0.72);
+  --color-bg-card-dark: rgba(44, 44, 46, 0.72);
+  --color-accent: #007AFF;
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-error: #FF3B30;
+  --color-text-primary: #1D1D1F;
+  --color-text-secondary: #86868B;
+  --color-text-dark: #F5F5F7;
+  --color-text-dark-secondary: #98989D;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-dark: rgba(255, 255, 255, 0.08);
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
+}
+
+html {
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #F5F5F7;
+  color: #1D1D1F;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body,
+body.dark {
+  background-color: #1C1C1E;
+  color: #F5F5F7;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.dark .glass,
+.glass.dark {
+  background: rgba(44, 44, 46, 0.72);
+}
+
+/* Card */
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.dark .card {
+  background: rgba(44, 44, 46, 0.9);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Cupertino spring transition */
+.spring-transition {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ease-transition {
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Button press effect */
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Streaming text cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.streaming-cursor::after {
+  content: '▋';
+  animation: blink 1s infinite;
+  color: #007AFF;
+  margin-left: 1px;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.3s ease forwards;
+}
+
+/* Progress bar animation */
+@keyframes progressPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.progress-pulse {
+  animation: progressPulse 2s ease-in-out infinite;
+}
